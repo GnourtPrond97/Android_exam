@@ -2,6 +2,7 @@ package com.example.dawd_exam.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -51,7 +52,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if(edQuantity.getText().toString().isEmpty()){
             Toast.makeText(this,"Please enter quantity  ",Toast.LENGTH_LONG).show();
             return;
+        } else {
+            Integer.parseInt(edQuantity.getText().toString());
         }
-        String isAdd = db.addProduct(edName.getText().toString(),edQuantity.getText());
-    }
+        String isAdd = db.addProduct(edName.getText().toString(), Integer.parseInt(edQuantity.getText().toString()));
+        Toast.makeText(this,isAdd,Toast.LENGTH_LONG).show();
+
+        Intent intent = new Intent(MainActivity.this,ListProductAct.class);
+        startActivity(intent);
+        }
 }
